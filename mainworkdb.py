@@ -1,7 +1,6 @@
 import sqlite3
 #Попытка создания приложения "УчетКниг" в консоли с использованием БД
-#Это моя первая самостоятельная работа с СУБД, использовал ИИ как помощника синтаксиса и для того, чтобы узнать как создавать авторов без дублей
-#Работа не закончена!!!
+
 class Bookwork:
     def __init__(self):
         pass
@@ -77,12 +76,46 @@ class Bookwork:
               cursor.execute("SELECT * FROM Books")
               rows = cursor.fetchall()
               return rows
-#Работа не закончена!!!
+    def workinconsole(self):
+         print('Старт работы!')
+         while True:
+              print('Для вывода данных введите 1, для ввода 2, для удаления 3, для выхода из работы 4:')
+              choice = int(input())
+              if choice == 1:
+                   print("Авторы произведений")
+                   print(self.getauthors())
+                   print("Произведения")
+                   print(self.getbooks())
+              if choice == 2:
+                   a = int(input('Что вы хотите ввести? Автор - 1, книга - 2, введите число: '))
+                   if a == 1:
+                        Fio = input("Введите ФИО или псевдоним автора: ") 
+                        self.insauth(Fio)
+                   if a == 2:
+                        nam = input("Введите название книги: ")
+                        auth = input("Введите ФИО или псевдоним автора: ")
+                        dat = input("Введите дату в формате 'дд.мм.гггг': ")
+                        self.insbook(nam, auth, dat)  
+              if choice == 3:
+                    a = int(input('Что вы хотите удалить? Автор - 1, книга - 2, введите число: '))
+                    if a == 1:
+                         ida = int(input("Введите ID автора для удаления: "))
+                         self.delauth(ida)
+                    if a == 2:
+                         idb = int(input("Введите ID книги для удаления: "))
+                         self.delbook(idb)
+              if choice == 4: 
+                   print("Завершение работы")
+                   break 
+              if choice not in [1, 2, 3, 4]:
+                   print("Вы ввели некорректное значение!")
+
 bookking = Bookwork()
-bookking.creattabauth()
+"""bookking.creattabauth()
 bookking.creattabbook()
 bookking.insauth("А. С. Пушкин")
-"""bookking.insbook('Капитанская дочка', "А. С. Пушкин", '01.08.1828')
-bookking.insbook('Кортик', 'А. Рыбаков', '18.03.1935')"""
-print(bookking.getbooks()) #-Выводит все, даже что вы добавили в базу своими руками, но это и не удивительно
-#Работа не закончена!!!
+bookking.insbook('Капитанская дочка', "А. С. Пушкин", '01.08.1828')
+bookking.insbook('Кортик', 'А. Рыбаков', '18.03.1935')
+print(bookking.getbooks()) #-Выводит все, даже что вы добавили в базу своими руками, но это и не удивительно"""
+# Выше я проверил работоспособность каждой функции
+bookking.workinconsole()
